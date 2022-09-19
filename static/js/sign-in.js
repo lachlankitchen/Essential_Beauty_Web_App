@@ -19,11 +19,13 @@ const app = Vue.createApp({
     methods: {
         // comma separated function declarations
 
-        signIn() {
+        signIn(customer) {
 
             axios.get(customersApi)
                     .then(response => {
                         this.customers = response.data;
+                        dataStore.commit("signIn", this.customer);
+                        window.location = "view-products.html";
                     })
                     .catch(error => {
                         console.error(error);
@@ -41,13 +43,13 @@ const app = Vue.createApp({
 
 // import the navigation menu
 import { navigationMenu } from './navigation-menu.js';
-import { sessionStore } from './session-store.js';
-
-app.use(sessionStore);
+// import data store
+import { dataStore } from './data-store.js'
 
 // register the navigation menu under the <navmenu> tag
 app.component('navmenu', navigationMenu);
 
+app.use(dataStore);
 
 // mount the page - this needs to be the last line in the file
 app.mount("main");

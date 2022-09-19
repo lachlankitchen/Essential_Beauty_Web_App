@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Shopping Cart</title>
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
+    <body>
+        <main>
+            <navmenu></navmenu>
+
+            <h1>Shopping Cart</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name:</th>
+                        <th>Price:</th>
+                        <th>Quantity Available</th>
+                        <th>Total</th>
+                    </tr>
+                    
+                    <tr v-for="item in items">
+                        <td>{{product.name}}</td></tr>
+                        <td>{{product.listPrice}}</td>
+                        <td>{{product.quantityInStock}}</td>
+                        <td>{{ getItemTotal(item) }}</td>
+                    </tr>
+                </thead>
+            </table>
+
+            <button @click.prevent="checkOutCart({{items}})" type="submit">Check Out Cart</button>
+            
+        </main>
+        <script type="module" src="js/view-products.js"></script>
+    </body>
+</html>

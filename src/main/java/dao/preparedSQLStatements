@@ -1,0 +1,14 @@
+select * from customer
+select * from product
+
+drop table customer
+drop table product
+
+delete from customer
+delete from product
+
+INSERT INTO CUSTOMER (USERNAME, FIRSTNAME, SURNAME, PASSWORD, EMAILADDRESS, SHIPPINGADDRESS) VALUES ('kitla230', 'Lachy', 'Kitchen', 'apple123', '39 Brodie Street', 'kitla230@student.otago.ac.nz') 
+INSERT INTO CUSTOMER (USERNAME, FIRSTNAME, SURNAME, PASSWORD, EMAILADDRESS, SHIPPINGADDRESS) VALUES ('belpi874', 'Pieta', 'Bell', 'lol', '116 Bowenvale Ave', 'belpi874@student.otago.ac.nz') 
+
+INSERT INTO PRODUCT (PRODUCTID, NAME, DESCRIPTION, CATEGORY, LISTPRICE, QUANTITYINSTOCK) VALUES ('WD1234', 'Slimy Widget', 'A widget that is covered in some kind of nasty shmoo.', 'Widgets', '7.32', '35.0') 
+INSERT INTO PRODUCT (PRODUCTID, NAME, DESCRIPTION, CATEGORY, LISTPRICE, QUANTITYINSTOCK) VALUES ('DH8832', 'Dodgy Doohicky', 'A doohicky that might work, or it might not...', 'Doohickies', '12.32', '5.0') 

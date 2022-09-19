@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>View Products</title>
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
+    <body>
+        <main>
+            <navmenu></navmenu>
+
+            <h1>How many do you want to buy?</h1>
+
+            <table>
+                <thead>
+                    <tr><th>Id:</th><td>{{product.productId}}</td></tr>
+                    <tr><th>Name:</th><td>{{product.name}}</td></tr>
+                    <tr><th>Description:</th><td>{{product.description}}</td></tr>
+                    <tr><th>Price:</th><td>{{product.listPrice}}</td></tr>
+                    <tr><th>Quantity Available</th><td>{{product.quantityInStock}}</td></tr>
+                </thead>
+            </table>
+
+            <form>
+                <label for="quantityInStock">Quantity:</label>
+                <input type="text" id="quantityInStock" name="quantityInStock"><br><br>
+                <button @click.prevent="addToCart({{product}})" type="submit">Add To Cart</button>
+            </form>
+        </main>
+        <script type="module" src="js/view-products.js"></script>
+    </body>
+</html>

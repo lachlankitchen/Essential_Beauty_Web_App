@@ -60,22 +60,31 @@ const app = Vue.createApp({
                         console.error(error);
                         alert("An error occurred - check the console for details.");
                     });
+        },
+
+        buyProduct(product) {
+            // store the product in the data store
+            dataStore.commit("selectProduct", product);
+            // redirects the browser to the “how many do you want to buy” page
+            window.location = "buy-product.html";
         }
     },
 
     // other modules
-    mixins: []
+    mixins:[NumberFormatter]
 
 });
 
 // import the navigation menu
 import { navigationMenu } from './navigation-menu.js';
-import { sessionStore } from './session-store.js';
-
-app.use(sessionStore);
-
 // register the navigation menu under the <navmenu> tag
 app.component('navmenu', navigationMenu);
+
+// import data store
+import { dataStore } from './data-store.js'
+app.use(dataStore);
+
+import { NumberFormatter } from './number-formatter.js';
 
 // mount the page - this needs to be the last line in the file
 app.mount("main");

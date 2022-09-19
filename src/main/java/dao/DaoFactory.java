@@ -11,12 +11,17 @@ package dao;
 public class DaoFactory {
 
     public static CustomerDAO getCustomerDAO() {
-        return JdbiDaoFactory.getCustomerDAO();
-        // return new CustomerCollectionsDAO();
+        //return JdbiDaoFactory.getCustomerDAO();
+        return new CustomerCollectionsDAO();
     }
 
     public static ProductDAO getProductDAO() {
-        return JdbiDaoFactory.getProductDAO();
-        // return new ProductCollectionsDAO();
+        //return JdbiDaoFactory.getProductDAO();
+        return new ProductCollectionsDAO();
+    }
+
+    public static SaleDAO getSaleDAO() {
+        return JdbiDaoFactory.getSaleDAO();
+        //return new SaleCollectionsDAO();
     }
 }

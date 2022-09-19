@@ -1,9 +1,10 @@
 package web;
 
-import dao.CustomerCollectionsDAO;
 import dao.CustomerDAO;
+import dao.DaoFactory;
 import dao.ProductCollectionsDAO;
 import dao.ProductDAO;
+import dao.SaleDAO;
 import domain.Product;
 import io.jooby.Jooby;
 import io.jooby.ServerOptions;
@@ -12,21 +13,22 @@ import java.math.BigDecimal;
 
 public class Server extends Jooby {
 
-    CustomerDAO cDao = new CustomerCollectionsDAO();
-    ProductDAO pDao = new ProductCollectionsDAO();
+    ProductDAO pDao = DaoFactory.getProductDAO();
+    CustomerDAO cDao = DaoFactory.getCustomerDAO();
+    SaleDAO sDao = DaoFactory.getSaleDAO();
 
     public Server() {
         setServerOptions(new ServerOptions().setPort(8087));
         install(new GsonModule());
         mount(new CustomerModule(cDao));
         mount(new ProductModule(pDao));
-        // MOUNT SALE
+        mount(new SalesModule(sDao));
         mount(new StaticAssetModule());
     }
 
     public static void main(String[] args) {
         // some dummy data for testing with
-        ProductDAO dao = new ProductCollectionsDAO();
+        ProductDAO dao = DaoFactory.getProductDAO();
     
         dao.saveProduct(new Product("BM235", "Back Massage", "30 Minute luxurious massage", "Massage", new BigDecimal("45.0"), new BigDecimal("4")));
         dao.saveProduct(new Product("HSM79", "Hot Stone Massage", "60 Minute hand massage", "Massage", new BigDecimal("75.0"), new BigDecimal("10")));

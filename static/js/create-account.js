@@ -20,12 +20,14 @@ const app = Vue.createApp({
     methods: {
         // comma separated function declarations
         createAccount() {
+            const customer = {customerId: this.customerId, username: this.username, firstName: this.firstName, surname: this.surname, password: this.password, shippingAddress: this.shippingAddress, emailAddress: this.emailAddress};
+            
             axios.post(registerApi, this.customer)
                     .then(() => {
                         window.location = 'sign-in.html';
                     })
                     .catch(error => {
-                        alert(error.response.data.message);
+                        alert("createAccount: " + error.response.data.message + " error occurred - check the console for details.");
                     });
         }
     },
@@ -35,9 +37,8 @@ const app = Vue.createApp({
 
 });
 
-// import the navigation menu
+// import the navigation menu component
 import { navigationMenu } from './navigation-menu.js';
-
 // register the navigation menu under the <navmenu> tag
 app.component('navmenu', navigationMenu);
 

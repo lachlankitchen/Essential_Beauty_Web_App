@@ -3,7 +3,6 @@ package dao;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import domain.Product;
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,12 +16,7 @@ public class ProductCollectionsDAO implements ProductDAO {
     private static final Map<String, Product> products = new HashMap<>();
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public ProductCollectionsDAO() {
-        saveProduct(new Product("WD1234", "Slimy Widget", "A widget that is covered in some kind of nasty shmoo.", "Widgets", new BigDecimal("7.32"), new BigDecimal("35.0")));
-        saveProduct(new Product("WD5678", "Green Widget", "A widget that has gone mouldy.", "Widgets", new BigDecimal("21.43"), new BigDecimal("3.0")));
-        saveProduct(new Product("DH8832", "Dodgy Doohicky", "A doohicky that might work, or it might not...", "Doohickies", new BigDecimal("12.32"), new BigDecimal("5.0")));
-        saveProduct(new Product("DH3962", "Polkadot Doohicky", "A doohicky that is covered in spots.", "Doohickies", new BigDecimal("43.23"), new BigDecimal("6.0")));
-    }
+    public ProductCollectionsDAO() {}
 
     @Override
     public void saveProduct(Product product) {

@@ -17,6 +17,7 @@ public class SaleCollectionsDAO implements SaleDAO {
 
     private static final Map<Integer, Sale> sales = new HashMap<>();
     
+    @Override
     public void save(Sale sale){
         sales.put(sale.getSaleId(), sale);
     }

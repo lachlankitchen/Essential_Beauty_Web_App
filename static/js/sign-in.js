@@ -1,4 +1,6 @@
 var customersApi = '/api/customers/{username}';
+var getByUsernameApi = ({username}) => `/api/customers/${username}`;
+
 
 const app = Vue.createApp({
 
@@ -20,20 +22,17 @@ const app = Vue.createApp({
         // comma separated function declarations
 
         signIn(customer) {
-
-            axios.get(customersApi)
+            axios.get(getByUsernameApi({'username': this.customer.username}))
                     .then(response => {
-                        this.customers = response.data;
+                        this.customer = response.data;
                         dataStore.commit("signIn", this.customer);
                         window.location = "view-products.html";
                     })
                     .catch(error => {
                         console.error(error);
-                        alert("An error occurred - check the console for details.");
+                        alert("signIn: " + error.response.data.message + " error occurred - check the console for details.");
                     });
-
-        },
-
+        }
     },
 
     // other modules

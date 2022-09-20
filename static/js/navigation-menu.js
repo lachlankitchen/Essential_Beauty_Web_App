@@ -2,17 +2,24 @@
 
 export const navigationMenu = {
 
+    data() {
+        return {
+            // models map (comma separated key/value pairs)
+            customer: new Object()
+        };
+    },
+    
     computed: {
         signedIn() {
             return this.customer != null;
         },
         ...Vuex.mapState({
-            customer: 'customer'
+                customer: 'customer'
         })
     },
 
     template:
-    `
+            `
     <nav>
         <div v-if="signedIn">Welcome {{customer.firstName}}</div>
         <a href=".">Home</a>
@@ -22,11 +29,11 @@ export const navigationMenu = {
         <a href="sign-in.html" v-if="!signedIn">Sign In</a>
     </nav>
     `,
-
-    methods:{
+    
+    methods: {
         signOut() {
             sessionStorage.clear();
             window.location = '.';
         }
     }
-};  
+};

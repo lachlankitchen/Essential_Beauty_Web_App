@@ -4,11 +4,8 @@
  */
 package dao;
 
-import domain.Customer;
-import domain.Product;
 import domain.Sale;
 import domain.SaleItem;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
@@ -30,7 +27,7 @@ public interface SaleJdbiDAO extends SaleDAO {
     @SqlUpdate("INSERT INTO SALEITEM(QUANTITYPURCHASED, SALEPRICE, PRODUCT) VALUES (:quantityPurchased, :salePrice, :product)")
     void insertSaleItem(@BindBean SaleItem item, @Bind("saleId") Integer saleId);
 
-    @SqlUpdate("UPDATE PRODUCT SET QUANTITYINSTOCK = QUANTITYINSTOCK - :quantityPurchased")
+    @SqlUpdate("UPDATE PRODUCT SET QUANTITYINSTOCK = QUANTITYINSTOCK - :quantityPurchased WHERE PRODUCTID=:productId")
     void updateStockLevel(@BindBean SaleItem item);
 
     @Override

@@ -1,7 +1,7 @@
 export const dataStore = Vuex.createStore({
 
     state() {
-// signed in customer
+        // signed in customer
         customer: null;
         // the shopping cart items
         items: null;

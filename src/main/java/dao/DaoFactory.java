@@ -21,8 +21,8 @@ public class DaoFactory {
     }
 
     public static SaleDAO getSaleDAO() {
-        return JdbiDaoFactory.getSaleDAO();
-        //return new SaleCollectionsDAO();
+        // return JdbiDaoFactory.getSaleDAO();
+        return new SaleCollectionsDAO();
     }
 }
 

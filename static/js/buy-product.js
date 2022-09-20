@@ -8,13 +8,6 @@ class SaleItem {
     }
 }
 
-class Sale {
-    constructor(customer, items) {
-        this.customer = customer;
-        this.items = items;
-    }
-}
-
 var salesApi = '/api/sales';
 
 const app = Vue.createApp({
@@ -41,19 +34,10 @@ const app = Vue.createApp({
     methods: {
         // comma separated function declarations
 
-        checkOut() {
-            let sale = new Sale(this.customer, this.items);
-
-            consol.log(sale);
-            axios.post(salesApi, this.sale)
-                    .then(() => {
-                        window.location = 'view-products.html';
-                    })
-                    .catch(error => {
-                        alert("checkOut: " + error.response.data.message + " error occurred - check the console for details.");
-                    });
+        addToCart() {
+            dataStore.commit("addItem", new SaleItem(this.product, this.quantity));
+            window.location = 'view-products.html';
         }
-
     },
 
     // other modules
@@ -63,6 +47,7 @@ const app = Vue.createApp({
 
 // import the navigation menu
 import { navigationMenu } from './navigation-menu.js';
+
 // register the navigation menu under the <navmenu> tag
 app.component('navmenu', navigationMenu);
 
@@ -72,5 +57,6 @@ import { dataStore } from './data-store.js'
 
 import { NumberFormatter } from './number-formatter.js';
 
-// mount the page - this needs to be the last line in the file
+// attach the controller to the <main> tag
 app.mount("main");
+

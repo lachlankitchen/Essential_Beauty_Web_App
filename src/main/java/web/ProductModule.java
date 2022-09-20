@@ -38,9 +38,9 @@ public class ProductModule extends Jooby {
 
         get("/api/categories/{category}", ctx -> {
 
-            String category = ctx.path("category").value();
+            String category = ctx.path("category").toString();
 
-            Collection<Product> products = dao.filterByCategory(category);
+            Collection<Product> products = (Collection<Product>) dao.filterByCategory(category);
 
             if (products == null) {
                 // no product with that ID found, so return a 404/Not Found error
@@ -49,7 +49,7 @@ public class ProductModule extends Jooby {
                 return products;
             }
         });
-
+    
     }
 
 }

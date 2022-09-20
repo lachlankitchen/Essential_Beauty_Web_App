@@ -14,9 +14,9 @@ public class CustomerCollectionsDAO implements CustomerDAO {
 
     // @SuppressWarnings("OverridableMethodCallInConstructor")
     public CustomerCollectionsDAO() {
-//        saveCustomer(new Customer("kitla230", "Lachy", "Kitchen", "apple123", "39 Brodie Street", "kitla230@student.otago.ac.nz"));
-//        saveCustomer(new Customer("belpi829", "Pieta", "Bell", "banana987", "116 Bowenvale Ave", "belpi829@student.otago.ac.nz"));
-//        saveCustomer(new Customer("wynjo482", "Josh", "Wynne", "poos456", "52 Hackthorne Road", "wynjo482@student.otago.ac.nz"));
+        saveCustomer(new Customer("kitla230", "Lachy", "Kitchen", "apple123", "39 Brodie Street", "kitla230@student.otago.ac.nz"));
+        saveCustomer(new Customer("belpi829", "Pieta", "Bell", "banana987", "116 Bowenvale Ave", "belpi829@student.otago.ac.nz"));
+        saveCustomer(new Customer("wynjo482", "Josh", "Wynne", "poos456", "52 Hackthorne Road", "wynjo482@student.otago.ac.nz"));
     }
 
     @Override

@@ -26,15 +26,14 @@ const app = Vue.createApp({
     methods: {
         // comma separated function declarations
 
-        getStudents() {
-
+        getProducts() {
             axios.get(productsApi)
                     .then(response => {
                         this.products = response.data;
                     })
                     .catch(error => {
                         console.error(error);
-                        alert("An error occurred - check the console for details.");
+                        alert("getProducts: " + error.response.data.message + " error occurred - check the console for details.");
                     });
 
         },
@@ -46,7 +45,7 @@ const app = Vue.createApp({
                     })
                     .catch(error => {
                         console.error(error);
-                        alert("An error occurred - check the console for details.");
+                        alert("getCategories: " + error.response.data.message + " error occurred - check the console for details.");
                     });
 
         },
@@ -58,7 +57,7 @@ const app = Vue.createApp({
                     })
                     .catch(error => {
                         console.error(error);
-                        alert("An error occurred - check the console for details.");
+                        alert("filterByCategory: " + error.response.data.message + " error occurred - check the console for details.");
                     });
         },
 

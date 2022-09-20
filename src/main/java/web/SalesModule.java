@@ -7,6 +7,7 @@ package web;
 import domain.Sale;
 import io.jooby.Jooby;
 import io.jooby.StatusCode;
+import dao.SaleDAO;
 
 /**
  *
@@ -14,12 +15,14 @@ import io.jooby.StatusCode;
  */
 public class SalesModule extends Jooby {
 
-    public SalesModule(Sale sale) {
-
+    public SalesModule(SaleDAO dao) {
+        
         post("/api/sales", ctx -> {
-
+            Sale sale = ctx.body().to(Sale.class);
+            System.out.println(sale);
+            dao.save(sale);
             return ctx.send(StatusCode.CREATED);
-        });
+        });       
     }
 
 }

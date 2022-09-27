@@ -11,10 +11,8 @@ import gui.MainMenu;
 public class ProductCatalogue {
 
 	public static void main(String[] args) {
+                
                 ProductDAO dao = DaoFactory.getProductDAO();
-
-            	//ProductDAO dao = new ProductCollectionsDAO();
-		//ProductDAO dao = new ProductJdbiDAO();
 
 		// create the frame instance
 		MainMenu menu = new MainMenu(dao);

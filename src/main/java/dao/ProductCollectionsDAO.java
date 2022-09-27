@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Mark George
+ * @author Lachy Kitchen
  */
 public class ProductCollectionsDAO implements ProductDAO {
 

@@ -22,20 +22,12 @@
 
                 <legend>Account Details</legend>
 
-                <!--
-                <%
-                String validation = (String) session.getAttribute("sign-in-error");
-                validation = validation != null ? validation : "";
-                %>
-                <p><%= validation%></p>
-                -->
-
                 <form @submit.prevent="signIn()">
 
                     <label>Username:</label><input type="text" v-model="customer.username"/>
                     <label>Password</label><input type="password" v-model="customer.password"/>
 
-                    <button type="submit">Sign In</button>
+                    <button class="text-underlined" type="submit">Sign In</button>
                 </form>
 
             </fieldset>

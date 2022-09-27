@@ -13,36 +13,34 @@
         <main>
             <navmenu></navmenu>
 
-            <h1>Welcome to the Doohickies and Widgets Shop</h1>
+            <h1>Welcome to the Treatments Page</h1>
 
-            <div class="categories"><button @click.prevent="getProducts()">All</button><button v-for="category in categories" @click.prevent="filterByCategory(category)">{{category}}</button></div>
+            <div id="space"><button class="text-underlined" @click.prevent="getProducts()">All</button><button class="text-underlined" v-for="category in categories" @click.prevent="filterByCategory(category)">{{category}}</button></div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Product Id</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>List Price</th>
-                    <th>Quantity In Stock</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="product in products">
-                    <td>{{product.productId}}</td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.description}}</td>
-                    <td>{{product.category}}</td>
-                    <td>{{ formatCurrency(product.listPrice) }}</td>
-                    <td>{{ formatNumber(product.quantityInStock, 0) }}</td>
-                    <td><button @click.prevent="buyProduct(product)" type="submit">Buy</button></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <a href="index.html">Back to Menu</a>
-    </main>
-    <script type="module" src="js/view-products.js"></script>
-</body>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>List Price</th>
+                        <th>Quantity In Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="product in products">
+                        <td>{{product.productId}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.category}}</td>
+                        <td>{{ formatCurrency(product.listPrice) }}</td>
+                        <td>{{ formatNumber(product.quantityInStock, 0) }}</td>
+                        <td><button class="text-underlined" @click.prevent="buyProduct(product)" type="submit">Buy</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        <script type="module" src="js/view-products.js"></script>
+    </body>
 </html>

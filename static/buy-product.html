@@ -25,10 +25,13 @@
                 </thead>
             </table>
 
-            <form @submit.prevent="addToCart()">
-                <label>Quantity:</label><input type="text" v-model="quantity" required><br><br>
-                <button type="submit">Add To Cart</button>
-            </form>
+            <fieldset>
+                <legend>Quantity to Buy</legend>
+                <form @submit.prevent="addToCart()">
+                    <label>Quantity:</label><input type="text" v-model="quantity" required/>
+                    <button type="submit">Add To Cart</button>
+                </form>
+            </fieldset>
 
         </main>
         <script type="module" src="js/buy-product.js"></script>

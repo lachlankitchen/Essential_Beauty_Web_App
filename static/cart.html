@@ -18,23 +18,32 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Name:</th>
+                        <th>Product:</th>
                         <th>Price:</th>
-                        <th>Quantity Available</th>
-                        <th>Total</th>
-                    </tr>
-                    
-                    <tr v-for="item in items">
-                        <td>{{item.name}}</td>
-                        <td>{{item.listPrice}}</td>
-                        <td>{{item.quantityInStock}}</td>
-                        <td>{{ getItemTotal(item) }}</td>
+                        <th>Quantity:</th>
+                        <th>Subtotal:</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr v-for="item in items">
+                        <td>{{item.product.name}}</td>
+                        <td>{{ formatCurrency(item.salePrice) }}</td>
+                        <td>{{item.quantityPurchased}}</td>
+                        <td>{{ formatCurrency(getItemTotal(item)) }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Total Cost:</th>
+                        <th></th>
+                        <th></th>
+                        <th>{{ formatCurrency(getTotal()) }}</th>
+                    </tr>
+                </tbody>
             </table>
 
-            <button @submit.prevent="checkOutCart({{items}})" type="submit">Check Out Cart</button>
-            
+            <div id="space">
+                <button class="text-underlined" @click.prevent="checkOut()">Check Out Cart</button>
+            </div>
         </main>
         <script type="module" src="js/cart.js"></script>
     </body>

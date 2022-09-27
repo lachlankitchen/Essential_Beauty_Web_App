@@ -1,3 +1,168 @@
+/* CSS */
+button{
+  align-items: center;
+  flex-direction: row;
+  padding: 12px 18px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  color: #3D3D3D;
+  background: #fff;
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button :focus {
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
+
+body{
+    display: grid;
+    place-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+table{
+    font-size: 10pt;
+}
+
+form, .center {
+    display: grid;
+    place-items: center;
+}
+
+.home, #space {
+    margin-top: 1vh;
+    margin-bottom: 5vh;
+}
+
+input {
+    margin-bottom: 1vh;
+}
+
+table {
+    margin-bottom: 5vh;
+}
+
+#welcome, .home {
+  align-items: center;
+  padding: 12px 18px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  color: #3D3D3D;
+  background: #fff;
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
 input {
     display: block;
+}
+
+
+/*
+=====
+DEPENDENCES
+=====
+*/
+
+.r-link{
+    display: var(--rLinkDisplay, inline-flex) !important;
+}
+
+.r-link[href]{
+    color: white;
+    text-decoration: var(--rLinkTextDecoration, none) !important;
+}
+
+.r-list{
+    margin-top: var(--rListMarginTop, 0) !important;
+    margin-bottom: var(--rListMarginBottom, 0) !important;
+}
+
+/*
+=====
+CORE STYLES
+=====
+*/
+
+
+/* 
+fading siblings
+*/
+
+.menu:hover .menu__link:not(:hover){
+    --rLinkColor: var(--menuLinkColorUnactive, rgba(0, 0, 225, .5));
+}
+
+/*
+=====
+PRESENTATION STYLES
+=====
+*/
+
+.menu{
+    background-color: #ffbac0;
+}
+
+.menu__list{
+    display: flex;
+}
+
+.menu__link{
+    padding: var(--menuLinkPadding, 1.5rem 2.5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* 
+=====
+TEXT UNDERLINED
+=====
+*/
+
+.text-underlined{
+    position: relative;
+    overflow: hidden;
+    transition: color .25s ease-out;
+}
+
+.text-underlined::before,
+.text-underlined::after{
+    content: "";
+    width: 0;
+    height: 3px;
+    background-color: var(--textUnderlinedLineColor, currentColor);
+
+    will-change: width;
+    transition: width .1s ease-out;
+
+    position: absolute;
+    bottom: 0;
+}
+
+.text-underlined::before{
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.text-underlined::after{
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.text-underlined:hover::before,
+.text-underlined:hover::after{
+    width: 100%;
+    transition-duration: .2s;
 }

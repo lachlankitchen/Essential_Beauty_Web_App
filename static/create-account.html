@@ -19,14 +19,8 @@
 
                 <legend>Account Details</legend>
 
-                <!--
-                <%
-                    String validation = (String) session.getAttribute("validation");
-                    validation = validation != null ? validation : "";
-                %>
-                <p><%= validation%></p>
-                -->
-
+                <ul><li v-for="v in violations">{{v}}</li></ul>
+                
                 <form @submit.prevent="createAccount()">
                     <label>Username:</label><input type="text" v-model="customer.username" required/>
                     <label>First Name:</label><input type="text" v-model="customer.firstName" required/>
@@ -34,8 +28,7 @@
                     <label>Email:</label><input type="text" v-model="customer.emailAddress" required/>
                     <label>Address:</label><textarea v-model="customer.shippingAddress" required></textarea>
                     <label>Password:</label><input type="password" v-model="customer.password" required/>
-                        
-                    <button type="submit">Create Account</button>
+                    <button class="text-underlined" type="submit">Create Account</button>
                 </form>
             
             </fieldset>

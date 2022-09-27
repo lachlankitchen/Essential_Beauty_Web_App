@@ -1,113 +1,138 @@
 package domain;
 
 import java.util.Objects;
+import net.sf.oval.constraint.Length;
+import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotNull;
 
 /**
  * @author Mark George
  */
 public class Customer {
 
-	private Integer customerId;
-	private String username;
-	private String firstName;
-	private String surname;
-	private String password;
-	private String emailAddress;
-	private String shippingAddress;
+    private Integer customerId;
 
-	public Customer() {
-	}
+    @NotNull(message = "Username must be provided.")
+    @NotBlank(message = "Username must be provided.")
+    @Length(min = 6, message = "Username must contain at least two characters.")
+    private String username;
 
-	public Customer(String username, String firstName, String surname, String password, String shippingAddress, String emailAddress) {
-		this.username = username;
-		this.firstName = firstName;
-		this.surname = surname;
-                this.password = password;
-		this.shippingAddress = shippingAddress;
-		this.emailAddress = emailAddress;
-	}
+    @NotNull(message = "FirstName must be provided.")
+    @NotBlank(message = "FirstName must be provided.")
+    private String firstName;
 
-	public Integer getCustomerId() {
-		return customerId;
-	}
+    @NotNull(message = "Surname must be provided.")
+    @NotBlank(message = "Surname must be provided.")
+    private String surname;
 
-	public void setCustomerId(Integer personId) {
-		this.customerId = personId;
-	}
+    @NotNull(message = "Password must be provided.")
+    @NotBlank(message = "Password must be provided.")
+    @Length(min = 8, message = "Password must contain at least eight characters.")
+    private String password;
 
-	public String getUsername() {
-		return username;
-	}
+    @NotNull(message = "Email address must be provided.")
+    @NotBlank(message = "Email address must be provided.")
+    @Length(min = 3, max = 200, message = "Email address must contain at least three characters.")
+    private String emailAddress;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    @NotNull(message = "Shipping address must be provided.")
+    @NotBlank(message = "Shipping address must be provided.")
+    @Length(min = 10, message = "Shipping address must contain at least ten characters.")
+    private String shippingAddress;
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public Customer() {
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public Customer(String username, String firstName, String surname, String password, String shippingAddress, String emailAddress) {
+        this.username = username;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.password = password;
+        this.shippingAddress = shippingAddress;
+        this.emailAddress = emailAddress;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public Integer getCustomerId() {
+        return customerId;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public void setCustomerId(Integer personId) {
+        this.customerId = personId;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getEmailAddress() {
-		return emailAddress;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getShippingAddress() {
-		return shippingAddress;
-	}
+    public String getSurname() {
+        return surname;
+    }
 
-	public void setShippingAddress(String shippingAddress) {
-		this.shippingAddress = shippingAddress;
-	}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-	@Override
-	public String toString() {
-		return "Customer{" + "customerId=" + customerId + ", username=" + username + ", firstName=" + firstName + ", surname=" + surname + ", password=" + password + ", emailAddress=" + emailAddress + ", shippingAddress=" + shippingAddress + '}';
-	}
+    public String getPassword() {
+        return password;
+    }
 
-        @Override
-        public int hashCode() {
-            int hash = 5;
-            hash = 29 * hash + Objects.hashCode(this.username);
-            return hash;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" + "customerId=" + customerId + ", username=" + username + ", firstName=" + firstName + ", surname=" + surname + ", password=" + password + ", emailAddress=" + emailAddress + ", shippingAddress=" + shippingAddress + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.username);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null) {
-                return false;
-            }
-            if (getClass() != obj.getClass()) {
-                return false;
-            }
-            final Customer other = (Customer) obj;
-            return Objects.equals(this.username, other.username);
+        if (obj == null) {
+            return false;
         }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Customer other = (Customer) obj;
+        return Objects.equals(this.username, other.username);
+    }
 
 }

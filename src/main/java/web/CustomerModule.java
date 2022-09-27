@@ -5,13 +5,18 @@
 package web;
 
 import dao.CustomerDAO;
+import dao.DaoExceptionMapper;
 import domain.Customer;
+import helpers.ErrorMessage;
 import io.jooby.Jooby;
 import io.jooby.StatusCode;
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
+import net.sf.oval.exception.ConstraintsViolatedException;
 
 /**
  *
- * @author lachlankitchen
+ * @author Lachy Kitchen
  */
 public class CustomerModule extends Jooby {
 
@@ -31,9 +36,45 @@ public class CustomerModule extends Jooby {
             }
         });
 
-        post("/api/register/", ctx -> {
-            Customer customer = ctx.body().to(Customer.class);
-            dao.saveCustomer(customer);
+        post("/api/register/", ctx -> {            
+            
+            try { 
+                Customer customer = ctx.body().to(Customer.class);
+                
+                // check that the customer objects that get created meet the constraints.
+                new Validator().assertValid(customer);
+
+                // save the customer
+                dao.saveCustomer(customer);
+
+                // redirect the browser back to the sign in page
+                //response.sendRedirect("sign-in.html");
+            
+            } catch (ConstraintsViolatedException ex) {
+
+                ErrorMessage err = new ErrorMessage();
+                
+                // get the violated constraints from the exception
+                ConstraintViolation[] violations = ex.getConstraintViolations();
+                
+                for (ConstraintViolation violation : violations) {
+                    err.addError(violation.getMessage());   
+                }
+
+                //create erorr message passing in constraints violates
+                //set response code 
+                return ctx.setResponseCode(StatusCode.CONFLICT_CODE).render(err);
+            } catch (Exception ex) {
+                
+                ErrorMessage err = new ErrorMessage();
+                
+                DaoExceptionMapper exception = new DaoExceptionMapper();
+
+                err.addError(exception.messageFromException(ex));   
+                
+                return ctx.setResponseCode(StatusCode.CONFLICT_CODE).render(err);
+            }
+
             return ctx.send(StatusCode.CREATED);
         });
     }

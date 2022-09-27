@@ -5,10 +5,10 @@ export const navigationMenu = {
     data() {
         return {
             // models map (comma separated key/value pairs)
-            customer: new Object()
+            
         };
     },
-    
+
     computed: {
         signedIn() {
             return this.customer != null;
@@ -20,16 +20,22 @@ export const navigationMenu = {
 
     template:
             `
-    <nav>
-        <div v-if="signedIn">Welcome {{customer.firstName}}</div>
-        <a href=".">Home</a>
-        <a href="view-products.html" v-if="signedIn">Browse Products</a>
-        <a href="cart.html" v-if="signedIn">View Cart</a>
-        <a href="#" v-if="signedIn" @click="signOut()">Sign Out</a>
-        <a href="sign-in.html" v-if="!signedIn">Sign In</a>
-    </nav>
-    `,
-    
+            <div class="page">
+                <nav class="page__menu menu">
+                    <ul class="menu__list r-list">
+                        <a class="menu__link r-link text-underlined" href=".">Home</a>
+                        <a class="menu__link r-link text-underlined" href="view-products.html" v-if="signedIn">Browse Products</a>
+                        <a class="menu__link r-link text-underlined" href="cart.html" v-if="signedIn">View Cart</a>
+                        <a class="menu__link r-link text-underlined" href="#" v-if="signedIn" @click="signOut()">Sign Out</a>
+                        <a class="menu__link r-link text-underlined" href="sign-in.html" v-if="!signedIn">Sign In</a>
+                        <a class="menu__link r-link text-underlined" href="create-account.html" v-if="!signedIn">Register</a>
+                    </ul>
+                </nav>
+            </div>
+            <div id="welcome" class="center" v-if="signedIn">Welcome {{customer.firstName}}</div>
+
+        `,
+
     methods: {
         signOut() {
             sessionStorage.clear();

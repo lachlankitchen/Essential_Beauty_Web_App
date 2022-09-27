@@ -19,10 +19,9 @@ CREATE TABLE IF NOT EXISTS CUSTOMER (
     constraint customer_PK primary key (Customer_ID)
 );
 
-
 CREATE TABLE IF NOT EXISTS SALE (
-    SALE_ID INTEGER AUTO_INCREMENT (1000),
-    SALE_DATE DATE not null,
+    SALE_ID INTEGER AUTO_INCREMENT (1000) unique,
+    SALE_DATE DATE,
     Customer_ID INTEGER not null,
     STATUS varchar(10) not null,
     constraint sale_PK primary key (SALE_ID),
@@ -30,9 +29,11 @@ CREATE TABLE IF NOT EXISTS SALE (
 );
 
 CREATE TABLE IF NOT EXISTS SALE_ITEM (
+    PRODUCTID varchar(10) not null,
     QUANTITYPURCHASED integer not null,
     SALEPRICE numeric(5,2) not null,
-    constraint sale_item_PK primary key (Customer_ID),
+    SALE_ID INTEGER AUTO_INCREMENT (1000) not null,
+    constraint sale_item_PK primary key (SALE_ID, PRODUCTID),
     constraint saleItem_sale_FK foreign key (SALE_ID) references SALE,
     constraint saleItem_product_FK foreign key (PRODUCTID) references PRODUCT
 );

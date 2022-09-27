@@ -6,7 +6,8 @@ const app = Vue.createApp({
     data() {
         return {
             // models map (comma separated key/value pairs)
-            customer: new Object()
+            customer: new Object(),
+            violations: new Array()
         };
     },
 
@@ -27,7 +28,8 @@ const app = Vue.createApp({
                         window.location = 'sign-in.html';
                     })
                     .catch(error => {
-                        alert("createAccount: " + error.response.data.message + " error occurred - check the console for details.");
+                        //alert("createAccount: " + error.response.data.violations);
+                        this.violations = error.response.data.violations;
                     });
         }
     },
@@ -41,6 +43,10 @@ const app = Vue.createApp({
 import { navigationMenu } from './navigation-menu.js';
 // register the navigation menu under the <navmenu> tag
 app.component('navmenu', navigationMenu);
+
+// import data store
+import { dataStore } from './data-store.js'
+app.use(dataStore);
 
 // mount the page - this needs to be the last line in the file
 app.mount("main"); 

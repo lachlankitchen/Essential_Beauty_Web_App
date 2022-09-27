@@ -4,10 +4,13 @@
  */
 package dao;
 
+import domain.Product;
 import domain.Sale;
-import java.util.HashMap;
-import java.util.Map;
-
+import domain.SaleItem;
+import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -15,11 +18,22 @@ import java.util.Map;
  */
 public class SaleCollectionsDAO implements SaleDAO {
 
-    private static final Map<Integer, Sale> sales = new HashMap<>();
-    
+    private static final Set<Sale> sales = new HashSet<>();
+
     @Override
-    public void save(Sale sale){
-        sales.put(sale.getSaleId(), sale);
+    public void save(Sale sale) {
+        sales.add(sale);
+        Collection<SaleItem> items = sale.getItems();
+        for(SaleItem item : items){
+            Product product = item.getProduct();
+            BigDecimal quantityInStock = product.getQuantityInStock();
+            BigDecimal quantityPurchased = item.getQuantityPurchased();
+            System.out.println(quantityInStock.subtract(quantityPurchased));
+            product.setQuantityInStock(quantityInStock.subtract(quantityPurchased));
+            
+            
+            //saveProduct
+        }
     }
 
 }

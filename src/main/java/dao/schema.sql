@@ -28,12 +28,14 @@ CREATE TABLE IF NOT EXISTS SALE (
     constraint sale_FK foreign key (Customer_ID) references CUSTOMER
 );
 
-CREATE TABLE IF NOT EXISTS SALE_ITEM (
+CREATE TABLE IF NOT EXISTS SALEITEM (
     PRODUCTID varchar(10) not null,
     QUANTITYPURCHASED integer not null,
     SALEPRICE numeric(5,2) not null,
-    SALE_ID INTEGER AUTO_INCREMENT (1000) not null,
-    constraint sale_item_PK primary key (SALE_ID, PRODUCTID),
+    SALE_ID INTEGER,
     constraint saleItem_sale_FK foreign key (SALE_ID) references SALE,
-    constraint saleItem_product_FK foreign key (PRODUCTID) references PRODUCT
+    constraint saleItem_product_FK foreign key (PRODUCTID) references PRODUCT,
+    constraint saleItem_PK primary key (SALE_ID, PRODUCTID)
 );
+
+

@@ -19,12 +19,12 @@ import org.jdbi.v3.sqlobject.transaction.Transaction;
  */
 public interface SaleJdbiDAO extends SaleDAO {
 
-    @SqlUpdate("INSERT INTO SALE(DATE, CUSTOMER, STATUS) VALUES (:date, :customer, :status)")
+    @SqlUpdate("INSERT INTO SALE(SALE_DATE, CUSTOMER_ID, STATUS) VALUES (:date, :customer.customerId, :status)")
     @GetGeneratedKeys
     Integer insertSale(@BindBean Sale sale);
 
 
-    @SqlUpdate("INSERT INTO SALEITEM(QUANTITYPURCHASED, SALEPRICE, PRODUCT) VALUES (:quantityPurchased, :salePrice, :product)")
+    @SqlUpdate("INSERT INTO SALEITEM(QUANTITYPURCHASED, SALEPRICE, PRODUCTID) VALUES (:quantityPurchased, :salePrice, :product.productId)")
     void insertSaleItem(@BindBean SaleItem item, @Bind("saleId") Integer saleId);
 
     @SqlUpdate("UPDATE PRODUCT SET QUANTITYINSTOCK = QUANTITYINSTOCK - :quantityPurchased WHERE PRODUCTID=:productId")
@@ -35,7 +35,7 @@ public interface SaleJdbiDAO extends SaleDAO {
     default void save(Sale sale) {
         // save current date
         sale.setDate(LocalDateTime.now());
-
+        
         // set sale status
         sale.setStatus("NEW ORDER");
 

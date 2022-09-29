@@ -19,7 +19,7 @@ public interface CustomerJdbiDAO extends CustomerDAO {
 
     @Override
     @SqlQuery("SELECT EXISTS (SELECT FROM CUSTOMER WHERE USERNAME = :username AND PASSWORD = :password)")
-    boolean authenticate(@Bind("username") String username, @Bind("password") String password);
+    Boolean authenticate(@Bind("username") String username, @Bind("password") String password);
 
     @Override
     @SqlUpdate("DELETE FROM CUSTOMER WHERE USERNAME = :username")

@@ -33,7 +33,7 @@ public class CustomerCollectionsDAO implements CustomerDAO {
     }
 
     @Override
-    public boolean authenticate(String username, String password) {
+    public Boolean authenticate(String username, String password) {
         if (customers.isEmpty()) {
             return false;
         }

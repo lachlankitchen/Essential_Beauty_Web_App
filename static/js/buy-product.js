@@ -46,7 +46,7 @@ const app = Vue.createApp({
     },
 
     // other modules
-    mixins: [NumberFormatter]
+    mixins: [NumberFormatter, BasicAccessAuthentication]
 
 });
 
@@ -61,6 +61,9 @@ import { dataStore } from './data-store.js'
         app.use(dataStore);
 
 import { NumberFormatter } from './number-formatter.js';
+
+// import authentication module
+import { BasicAccessAuthentication } from './authentication.js';
 
 // attach the controller to the <main> tag
 app.mount("main");

@@ -6,9 +6,9 @@ import java.util.Collection;
 /**
  * @author Mark George
  */
-public interface CustomerDAO {
+public interface CustomerDAO extends CredentialsValidator {
 
-	boolean authenticate(String username, String password);
+	Boolean authenticate(String username, String password);
 
 	void removeCustomer(Customer customer);
 

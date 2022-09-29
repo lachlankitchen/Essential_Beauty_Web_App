@@ -2,7 +2,6 @@ package web;
 
 import dao.CustomerDAO;
 import dao.DaoFactory;
-import dao.ProductCollectionsDAO;
 import dao.ProductDAO;
 import dao.SaleDAO;
 import domain.Product;
@@ -10,6 +9,7 @@ import io.jooby.Jooby;
 import io.jooby.ServerOptions;
 import io.jooby.json.GsonModule;
 import java.math.BigDecimal;
+import java.util.Set;
 
 public class Server extends Jooby {
 
@@ -19,11 +19,12 @@ public class Server extends Jooby {
 
     public Server() {
         setServerOptions(new ServerOptions().setPort(8087));
+        mount(new StaticAssetModule());
         install(new GsonModule());
+        install(new BasicAccessAuth(cDao, Set.of("/api/.*"), Set.of("/api/register")));
         mount(new CustomerModule(cDao));
         mount(new ProductModule(pDao));
         mount(new SalesModule(sDao));
-        mount(new StaticAssetModule());
     }
 
     public static void main(String[] args) {

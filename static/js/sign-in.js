@@ -22,6 +22,8 @@ const app = Vue.createApp({
         // comma separated function declarations
 
         signIn(customer) {
+            this.createToken(this.customer.username, this.customer.password);
+
             axios.get(getByUsernameApi({'username': this.customer.username}))
                     .then(response => {
                         this.customer = response.data;
@@ -30,13 +32,13 @@ const app = Vue.createApp({
                     })
                     .catch(error => {
                         console.error(error);
-                        alert("signIn: Cannot find account with associated user, you must create an acount first - check the console for details.");
+                        alert("signIn: Invalid credentials, could not find customer with supplied username and password - check the console for details.");
                     });
         }
     },
 
     // other modules
-    mixins: []
+    mixins: [BasicAccessAuthentication]
 
 });
 
@@ -49,6 +51,9 @@ import { dataStore } from './data-store.js'
 app.component('navmenu', navigationMenu);
 
 app.use(dataStore);
+
+// import authentication module
+import { BasicAccessAuthentication } from './authentication.js';
 
 // mount the page - this needs to be the last line in the file
 app.mount("main");

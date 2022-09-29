@@ -1,0 +1,71 @@
+@startuml
+
+' === Style Tweaks ===
+
+skinparam {
+  Style StrictUML
+  RoundCorner 5
+  ParticipantPadding 10
+  Padding 2
+  SequenceStereotype {
+    Font {
+      Size 11
+      Style plain
+    }
+  }
+  Database {
+    BorderColor #A80036
+  }
+}
+
+
+' === Actors / Participants
+
+actor "Customer" as customer
+
+' === Interactions ===
+
+box "             Web Browser             " #white
+	Participant "view-products" as page << HTML >>
+    participant "view-products.js" as controller <<Vue>>
+    participant "axios" as axios <<HTTP client >>
+end box
+
+box "Web Server" #white
+	Participant "Server" as server << Jooby >>
+	Participant "ProductModule" as module << Jooby >>
+	Participant "ProductDAO" as dao << DAO >>
+end box
+
+database "Database" as db
+
+customer -> page++ : clicks "View Products" button
+
+page -> controller++: filterByCategory(category)
+
+controller -> axios++ : get(/api/categories/{category}))
+
+axios -> server++ : HTTP GET /api/categories/{category}
+
+server -> module++ : get(/api/categories/{category})
+
+module -> dao++ : filterByCategory(category)
+
+dao -> db++ : SELECT * FROM PRODUCT WHERE CATEGORY = :category
+return result
+
+return products
+
+return products
+
+return JSON encoded products
+
+return JavaScript products
+
+return template merged with products
+
+return filtered products displayed to user
+
+
+@enduml
+

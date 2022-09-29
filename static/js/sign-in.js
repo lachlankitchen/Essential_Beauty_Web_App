@@ -30,7 +30,7 @@ const app = Vue.createApp({
                     })
                     .catch(error => {
                         console.error(error);
-                        alert("signIn: " + error.response.data.message + " error occurred - check the console for details.");
+                        alert("signIn: Cannot find account with associated user, you must create an acount first - check the console for details.");
                     });
         }
     },

@@ -35,8 +35,13 @@ const app = Vue.createApp({
         // comma separated function declarations
 
         addToCart() {
-            dataStore.commit("addItem", new SaleItem(this.product, this.quantity));
-            window.location = 'view-products.html';
+            console.log(this.product.quantityInStock > this.quantity);
+            if(this.product.quantityInStock > this.quantity){
+                dataStore.commit("addItem", new SaleItem(this.product, this.quantity));
+                window.location = 'view-products.html';
+            }else{
+                alert("Unfortunately, there is not enough stock of this product, please try another amount")
+            }
         }
     },
 

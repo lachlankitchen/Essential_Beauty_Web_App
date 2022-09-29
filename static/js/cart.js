@@ -52,14 +52,19 @@ const app = Vue.createApp({
         
         checkOut() {
             let sale = new Sale(this.customer, this.items);
-            axios.post(salesApi, sale)
-                    .then(() => {
-                        dataStore.commit("clearItems", sale);
-                        window.location = 'view-products.html';
-                    })
-                    .catch(error => {
-                        alert("checkOut: " + error.response.data.message + " error occurred - check the console for details.");
-                    });
+            if(this.items.length != 0){
+                axios.post(salesApi, sale)
+                        .then(() => {
+                            dataStore.commit("clearItems", sale);
+                            window.location = 'view-products.html';
+                        })
+                        .catch(error => {
+                            alert("checkOut: " + error.response.data.message + " error occurred - check the console for details.");
+                        });
+            }else{
+                alert("checkOut: You have zero items in your cart to checkout - check the console for details.");
+            }
+
         }
 
     },

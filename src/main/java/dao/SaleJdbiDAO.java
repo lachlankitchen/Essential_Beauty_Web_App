@@ -24,10 +24,10 @@ public interface SaleJdbiDAO extends SaleDAO {
     Integer insertSale(@BindBean Sale sale);
 
 
-    @SqlUpdate("INSERT INTO SALEITEM(QUANTITYPURCHASED, SALEPRICE, PRODUCTID) VALUES (:quantityPurchased, :salePrice, :product.productId)")
+    @SqlUpdate("INSERT INTO SALEITEM(SALE_ID, QUANTITYPURCHASED, SALEPRICE, PRODUCTID) VALUES (:saleId, :quantityPurchased, :salePrice, :product.productId)")
     void insertSaleItem(@BindBean SaleItem item, @Bind("saleId") Integer saleId);
 
-    @SqlUpdate("UPDATE PRODUCT SET QUANTITYINSTOCK = QUANTITYINSTOCK - :quantityPurchased WHERE PRODUCTID=:productId")
+    @SqlUpdate("UPDATE PRODUCT SET QUANTITYINSTOCK = QUANTITYINSTOCK - :quantityPurchased WHERE PRODUCTID=:product.productId")
     void updateStockLevel(@BindBean SaleItem item);
 
     @Override

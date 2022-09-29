@@ -26,7 +26,7 @@
                     <label>First Name:</label><input type="text" v-model="customer.firstName" required/>
                     <label>Surname:</label><input type="text" v-model="customer.surname" required/>
                     <label>Email:</label><input type="text" v-model="customer.emailAddress" required/>
-                    <label>Address:</label><textarea v-model="customer.shippingAddress" required></textarea>
+                    <label>Address:</label><textarea type="text" v-model="customer.shippingAddress" required></textarea>
                     <label>Password:</label><input type="password" v-model="customer.password" required/>
                     <button class="text-underlined" type="submit">Create Account</button>
                 </form>

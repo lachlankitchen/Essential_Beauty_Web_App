@@ -9,7 +9,6 @@ public class SaleItem {
 
 	private BigDecimal quantityPurchased;
 	private BigDecimal salePrice;
-
 	private Product product;
 
 	public SaleItem() {

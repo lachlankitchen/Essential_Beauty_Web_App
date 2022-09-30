@@ -4,11 +4,9 @@ import dao.CustomerDAO;
 import dao.DaoFactory;
 import dao.ProductDAO;
 import dao.SaleDAO;
-import domain.Product;
 import io.jooby.Jooby;
 import io.jooby.ServerOptions;
 import io.jooby.json.GsonModule;
-import java.math.BigDecimal;
 import java.util.Set;
 
 public class Server extends Jooby {

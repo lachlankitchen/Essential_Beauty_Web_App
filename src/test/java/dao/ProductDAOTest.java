@@ -33,9 +33,9 @@ public class ProductDAOTest {
 //        dao = DaoFactory.getProductDAO();
         dao = JdbiDaoFactory.getProductDAO();
 
-        p1 = new Product("WD1234", "Slimy Widget", "A widget that is covered in some kind of nasty shmoo.", "Widgets", new BigDecimal("7.32"), new BigDecimal("35.0"));
-        p2 = new Product("WD5678", "Green Widget", "A widget that has gone mouldy.", "Widgets", new BigDecimal("21.43"), new BigDecimal("3.0"));
-        p3 = new Product("DH8832", "Dodgy Doohicky", "A doohicky that might work, or it might not...", "Doohickies", new BigDecimal("12.32"), new BigDecimal("5.0"));
+        p1 = new Product("BM235", "Back Massage", "30 Minute luxurious massage", "Massage", new BigDecimal("45.00"), new BigDecimal("4.0"));
+        p2 = new Product("UPW498", "Upper Lip Wax", "60 Minute deluxe massage", "Wax", new BigDecimal("10.00"), new BigDecimal("1.0"));
+        p3 = new Product("EF581", "Express Facial", "60 Minute deluxe Facial", "Wax", new BigDecimal("60.00"), new BigDecimal("5.0"));
 
         dao.saveProduct(p1);
         dao.saveProduct(p2);
@@ -98,7 +98,28 @@ public class ProductDAOTest {
         assertThat(result, is(p1));
         assertThat(result, Matchers.samePropertyValuesAs(p1));
     }
-
-    // TODO getCategories and filterByCategory
     
+    @Test
+    public void getCategories() {
+
+        assertThat(dao.getCategories(), hasSize(2));
+        assertThat(dao.searchById(p2.getProductId()).getCategory(), is(p2.getCategory()));
+
+        // save s3
+        dao.saveProduct(p3);
+
+        //checks size of unique categories is unchanged
+        assertThat(dao.getCategories(), hasSize(2));
+        assertThat(dao.searchById(p3.getProductId()).getCategory(), is(p3.getCategory()));
+    }
+    
+    @Test
+    public void filterByCategory() {
+        
+        // save s3
+        dao.saveProduct(p3);
+        
+        assertThat(dao.filterByCategory(p1.getCategory()), hasSize(1));
+        assertThat(dao.filterByCategory(p2.getCategory()), hasSize(2));
+    }    
 }

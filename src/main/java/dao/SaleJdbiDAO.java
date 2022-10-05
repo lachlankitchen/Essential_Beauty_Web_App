@@ -4,6 +4,7 @@
  */
 package dao;
 
+import domain.Product;
 import domain.Sale;
 import domain.SaleItem;
 import java.time.LocalDateTime;
@@ -43,8 +44,13 @@ public interface SaleJdbiDAO extends SaleDAO {
         Integer saleId = insertSale(sale);
         sale.setSaleId(saleId);
 
+        ProductDAO pdao = JdbiDaoFactory.getProductDAO();
+        
         // loop through the sale's items.
         for (SaleItem item : sale.getItems()) {
+            String productId = item.getProduct().getProductId();
+            Product product = pdao.searchById(productId);
+            item.setSalePrice(product.getListPrice());
             insertSaleItem(item, saleId);
             updateStockLevel(item);
         }

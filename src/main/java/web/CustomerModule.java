@@ -27,7 +27,14 @@ public class CustomerModule extends Jooby {
             String username = ctx.path("username").value();
 
             Customer customer = dao.searchByUsername(username);
+            
+            // set sensitive customer data to null to prevent it being stored in the session storage
+            customer.setEmailAddress(null);
+            customer.setShippingAddress(null);
+            customer.setSurname(null);
+            customer.setPassword(null);
 
+            customer.setPassword(null);
             if (customer == null) {
                 // no customer with that ID found, so return a 404/Not Found error
                 return ctx.send(StatusCode.NOT_FOUND);
